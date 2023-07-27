@@ -1,0 +1,109 @@
+<div>
+  <mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>face</mat-icon>
+    </button>
+    <span>My CRUD App</span>
+    <span class="example-spacer"></span>
+    <button mat-raised-button color="warn" (click)="OpenAddForm(addUpdate)">ADD-Edit Employee</button>
+    <!-- <button mat-raised-button color="warn" (click)="OpenEditForm()">ADD-Edit Employee</button> -->
+  
+  </mat-toolbar>
+  <div Class="main-body">
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- ID Column -->
+
+
+        <!-- Progress Column -->
+
+        <!-- ['userId', 'firstName', 'lastName', 'emailId','dob','address','zipCode','gender','country','state','city']; -->
+        <!-- Name Column -->
+        <ng-container matColumnDef="empId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header appHover> empId </th>
+          <td mat-cell *matCellDef="let row" appHover> {{row.empId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="employeeName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header appHover> employeeName </th>
+          <td mat-cell *matCellDef="let row" appHover> {{row.employeeName}} </td>
+        </ng-container>
+
+        <!-- Fruit Column -->
+        <!-- <ng-container matColumnDef="lastName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> lastName </th>
+              <td mat-cell *matCellDef="let row"> {{row.lastName}} </td>
+            </ng-container> -->
+
+            
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header appHover> email </th>
+          <td mat-cell *matCellDef="let row" appHover> {{row.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="phoneNo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header appHover> phoneNo </th>
+          <td mat-cell *matCellDef="let row" appHover> {{row.phoneNo}} </td>
+        </ng-container>
+
+
+
+        <!-- <ng-container matColumnDef="address">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> address </th>
+              <td mat-cell *matCellDef="let row"> {{row.address}} </td>
+            </ng-container> -->
+
+        <ng-container matColumnDef="deptId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header appHover> deptId </th>
+          <td mat-cell *matCellDef="let row" appHover> {{row.deptId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="departmentName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header appHover> departmentName </th>
+          <td mat-cell *matCellDef="let row" appHover> {{row.departmentName}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-icon-button color="primary" (click)="updateData(row,addUpdate)">
+              <!-- (click)="getEmployee(row)" -->
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteUser(row.empId)">
+              <!-- (click)="deleteUser(row.userId)" -->
+              <mat-icon>delete</mat-icon>
+            </button>
+            <!-- <button mat-icon-button color="warn"  >
+               (click)="getUserDetails(row)" -->
+            <!--    <mat-icon>View Details</mat-icon>
+            </button> -->
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="6">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+
+    </div>
+  </div>
+</div>
+<div>
+  <ng-template #addUpdate let-modal>
+    <app-add-update-employee [fieldValue]="data"></app-add-update-employee>
+  </ng-template>
+</div>

@@ -1,0 +1,69 @@
+<div mat-dialog-title>
+  <h1>Add Employee Form</h1>
+</div>
+<div mat-dialog-content class="content">
+
+  <form [formGroup]="EmployeeForm" (ngSubmit)="onSave(EmployeeForm.value)">
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>userName</mat-label>
+        <input matInput type="number" placeholder="Enter userName" formControlName="empId" required style="display: none;"/>
+        <!-- <mat-hint style="color:red;" *ngIf="lastName && lastName.invalid && lastName.touched ">
+            <span> Enter the lastName</span>
+          </mat-hint> -->
+      </mat-form-field>
+
+    </div>
+
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>userName</mat-label>
+        <input matInput type="text" placeholder="Enter userName" formControlName="employeeName" required />
+        <!-- <mat-hint style="color:red;" *ngIf="lastName && lastName.invalid && lastName.touched ">
+            <span> Enter the lastName</span>
+          </mat-hint> -->
+      </mat-form-field>
+
+    </div>
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>emailId</mat-label>
+        <input matInput type="email" placeholder="Enter email" formControlName="email" required />
+        <!-- <mat-hint style="color:red;" *ngIf="emailId && emailId.invalid && emailId.touched "> -->
+        <!-- <span> Enter the emailId</span>
+        </mat-hint> -->
+      </mat-form-field>
+    </div>
+
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>phoneNo</mat-label>
+        <input matInput type="phoneNo" placeholder="Enter phoneNo" formControlName="phoneNo" required />
+        <!-- <mat-hint style="color:red;" *ngIf="emailId && emailId.invalid && emailId.touched ">
+            <span> Enter the emailId</span>
+          </mat-hint> -->
+      </mat-form-field>
+    </div>
+
+
+    <div>
+      <mat-form-field>
+        <mat-label>Select Department</mat-label>
+        <select formControlName="deptId">
+          <option *ngFor="let dept of Department" [value]="dept.value">
+            {{dept.viewValue}}
+          </option>
+        </select>
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button color="warn" mat-dialog-close (click)="closemodal()">Close</button>
+    <!-- <button type="submit">Save</button> -->
+    <button mat-raised-button color="primary"  type="submit">Save</button>
+  </form>
+  <!-- <button mat-raised-button color="primary" type="submit">{{data? 'Update':'Save'}}</button> -->
+</div>
